@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('content')
-    <h1>Guarda Fumetto</h1>
+    <h1>FUMETTO N.{{ $comic->id }}</h1>
     <hr>
     <a class="btn btn-primary mb-4" href="{{ route('comics.index') }}">Torna Indietro</a>
 
