@@ -1,7 +1,9 @@
 @extends('layouts.base')
 
 @section('content')
-    <h1 class="mb-4">Inserisci nuovo fumetto</h1>
+    <h1>Inserisci Nuovo Fumetto</h1>
+    <hr>
+    <a class="btn btn-primary mb-4" href="{{ route('comics.index') }}">Torna Indietro</a>
 
     <form method="POST" action="{{ route('comics.store') }}">
         @csrf

@@ -1,6 +1,10 @@
 @extends('layouts.base')
 
 @section('content')
+    <h1>Guarda Fumetto</h1>
+    <hr>
+    <a class="btn btn-primary mb-4" href="{{ route('comics.index') }}">Torna Indietro</a>
+
     <div class="card">
         <img src="{{ $comic->thumb }}" style="max-height: 1000px; object-fit: cover;" class="card-img-top"
             alt="{{ $comic->title }}">
