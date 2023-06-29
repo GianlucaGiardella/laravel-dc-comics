@@ -17,8 +17,6 @@ class ComicsTableSeeder extends Seeder
     public function run()
     {
         foreach (config("comics") as $comic) {
-            $comic["artists"] = implode(",", $comic["artists"]);
-            $comic["writers"] = implode(",", $comic["writers"]);
             Comic::create($comic);
         }
     }
