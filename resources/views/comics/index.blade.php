@@ -3,12 +3,13 @@
 @section('content')
     <h1>Tabella Fumetti</h1>
     <hr>
+    <a class="btn btn-primary mb-4" href="{{ route('comics.create') }}">Aggiungi</a>
 
     <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">Titolo</th>
-                <th scope="col">Prezzo (€)</th>
+                <th scope="col">Prezzo(€)</th>
                 <th scope="col">Serie</th>
                 <th scope="col">Data di uscita</th>
                 <th scope="col">Tipologia</th>
