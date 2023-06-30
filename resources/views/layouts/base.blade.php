@@ -9,6 +9,7 @@
 </head>
 
 <body data-bs-theme="dark">
+    @include('partials.header')
     <div class="container">
         @yield('content')
     </div>
