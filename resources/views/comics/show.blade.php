@@ -13,8 +13,9 @@
             <li class="list-group-item"><strong>DESCRIZIONE:</strong> {{ $comic->description }}</li>
             <li class="list-group-item"><strong>SERIE:</strong> {{ $comic->series }}</li>
             <li class="list-group-item"><strong>TIPOLOGIA:</strong> {{ $comic->type }}</li>
-            <li class="list-group-item"><strong>DATA DI USCITA:</strong> {{ $comic->sale_date }}</li>
-            <li class="list-group-item"><strong>PREZZO:(</strong>€) {{ $comic->price }}</li>
+            <li class="list-group-item"><strong>DATA DI USCITA:</strong>
+                {{ \Carbon\Carbon::parse($comic->date)->format('d/m/Y') }}</li>
+            <li class="list-group-item"><strong>PREZZO(€):</strong> {{ $comic->price / 100 }}</li>
             <li class="list-group-item"><strong>ARTISTI:</strong>
                 @foreach ($comic->artists as $artist)
                     <span>{{ $artist }}, </span>
