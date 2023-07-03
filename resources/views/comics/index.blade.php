@@ -5,6 +5,13 @@
     <hr>
     <a class="btn btn-primary mb-4" href="{{ route('comics.create') }}">Aggiungi</a>
 
+    @if (session('delete_success'))
+        @php $comic = session('delete_success') @endphp
+        <div class="alert alert-danger">
+            Il fumetto "{{ $comic->title }}" è stato eliminato.
+        </div>
+    @endif
+
     <table class="table table-striped">
         <thead>
             <tr>
@@ -27,6 +34,12 @@
                     <td>
                         <a class="btn btn-primary" href="{{ route('comics.show', ['comic' => $comic->id]) }}">Guarda</a>
                         <a class="btn btn-warning" href="{{ route('comics.edit', ['comic' => $comic->id]) }}">Modifica</a>
+                        <form action="{{ route('comics.destroy', ['comic' => $comic->id]) }}" method="POST"
+                            class="d-inline-block">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-danger">Elimina</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
