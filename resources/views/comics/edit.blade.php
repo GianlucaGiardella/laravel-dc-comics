@@ -5,7 +5,7 @@
     <hr>
     <a class="btn btn-primary mb-4" href="{{ route('comics.index') }}">Torna Indietro</a>
 
-    <form method="POST" action="{{ route('comics.update', ['comic' => $comic->id]) }}">
+    <form class="mt-4" method="POST" action="{{ route('comics.update', ['comic' => $comic->id]) }}">
         @csrf
         @method('PUT')
 
@@ -131,6 +131,6 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Modifica</button>
+        <button type="submit" class="btn btn-primary">Salva Modifiche</button>
     </form>
 @endsection

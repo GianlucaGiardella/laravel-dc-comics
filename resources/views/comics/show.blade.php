@@ -3,9 +3,9 @@
 @section('content')
     <h1>FUMETTO N.{{ $comic->id }}</h1>
     <hr>
-    <a class="btn btn-primary mb-4" href="{{ route('comics.index') }}">Torna Indietro</a>
+    <a class="btn btn-primary" href="{{ route('comics.index') }}">Torna Indietro</a>
 
-    <div class="card">
+    <div class="card mt-4">
         <img src="{{ $comic->thumb }}" style="max-height: 1000px; object-fit: cover;" class="card-img-top"
             alt="{{ $comic->title }}">
         <ul class="list-group list-group-flush">
