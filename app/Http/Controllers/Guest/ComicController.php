@@ -26,12 +26,12 @@ class ComicController extends Controller
     {
         $comics = Comic::all();
 
-        return view("comics.index", compact("comics"));
+        return view('comics.index', compact('comics'));
     }
 
     public function create()
     {
-        return view("comics.create");
+        return view('comics.create');
     }
 
     public function store(Request $request)
@@ -53,22 +53,37 @@ class ComicController extends Controller
         $newComic->writers = $data['writers'];
         $newComic->save();
 
-        return redirect()->route('comics.show', ['comic' => $newComic->id]);
+        return to_route('comics.show', ['comic' => $newComic->id]);
     }
 
     public function show(Comic $comic)
     {
-        return view("comics.show", compact("comic"));
+        return view('comics.show', compact('comic'));
     }
 
-    public function edit($id)
+    public function edit(Comic $comic)
     {
-        //
+        return view('comics.edit', compact('comic'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Comic $comic)
     {
-        //
+        $request->validate($this->validations);
+
+        $data = $request->all();
+
+        $comic->title = $data['title'];
+        $comic->description = $data['description'];
+        $comic->thumb = $data['thumb'];
+        $comic->price = $data['price'];
+        $comic->series = $data['series'];
+        $comic->sale_date = $data['sale_date'];
+        $comic->type = $data['type'];
+        $comic->artists = $data['artists'];
+        $comic->writers = $data['writers'];
+        $comic->update();
+
+        return to_route('comics.show', ['comic' => $comic->id]);
     }
 
     public function destroy($id)
