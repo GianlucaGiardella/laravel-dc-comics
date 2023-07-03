@@ -12,5 +12,7 @@ class Comic extends Model
         'writers' => 'array',
     ];
 
+    protected $fillable = ['title', 'thumb', 'price', 'series', 'sale_date', 'type', 'artists', 'writers'];
+
     use HasFactory;
 }
