@@ -1,15 +1,21 @@
 @extends('layouts.base')
 
 @section('content')
-    <h1>Tabella Fumetti</h1>
+    <h1>Cestino Fumetti</h1>
     <hr>
-    <a class="btn btn-primary" href="{{ route('comics.create') }}">Aggiungi</a>
-    <a class="btn btn-secondary" href="{{ route('comics.trashed') }}">Cestino</a>
+    <a class="btn btn-primary" href="{{ route('comics.index') }}">Torna Indietro</a>
 
-    @if (session('trash_success'))
-        @php $comic = session('trash_success') @endphp
-        <div class="alert alert-light mt-3">
-            Il fumetto "{{ $comic->title }}" è stato spostato nel Cestino.
+    @if (session('delete_success'))
+        @php $comic = session('delete_success') @endphp
+        <div class="alert alert-danger mt-3">
+            Il fumetto "{{ $comic->title }}" è stato eliminato.
+        </div>
+    @endif
+
+    @if (session('restore_success'))
+        @php $comic = session('restore_success') @endphp
+        <div class="alert alert-success mt-3">
+            Il fumetto "{{ $comic->title }}" è stato ripristinato.
         </div>
     @endif
 
@@ -25,7 +31,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($comics as $comic)
+            @foreach ($trashedComics as $comic)
                 <tr>
                     <td>{{ $comic->title }}</td>
                     <td>{{ $comic->price / 100 }}</td>
@@ -33,13 +39,16 @@
                     <td>{{ \Carbon\Carbon::parse($comic->date)->format('d/m/Y') }}</td>
                     <td>{{ $comic->type }}</td>
                     <td>
-                        <a class="btn btn-primary" href="{{ route('comics.show', ['comic' => $comic->id]) }}">Guarda</a>
-                        <a class="btn btn-warning" href="{{ route('comics.edit', ['comic' => $comic->id]) }}">Modifica</a>
-                        <form action="{{ route('comics.destroy', ['comic' => $comic->id]) }}" method="POST"
+                        <form action="{{ route('comics.restore', ['comic' => $comic->id]) }}" method="POST"
+                            class="d-inline-block">
+                            @csrf
+                            <button class="btn btn-success">Ripristina</button>
+                        </form>
+                        <form action="{{ route('comics.hard_delete', ['comic' => $comic->id]) }}" method="POST"
                             class="d-inline-block">
                             @csrf
                             @method('delete')
-                            <button class="btn btn-secondary">Sposta nel Cestino</button>
+                            <button class="btn btn-danger">Elimina</button>
                         </form>
                     </td>
                 </tr>
