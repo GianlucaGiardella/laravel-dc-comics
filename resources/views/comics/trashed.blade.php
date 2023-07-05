@@ -56,7 +56,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="modal{{ $comic->id }}Label">Sicuro di voler
-                                            eliminare il fumetto ?</h1>
+                                            eliminare il Fumetto ?</h1>
                                     </div>
                                     <div class="modal-footer">
                                         <form action="{{ route('comics.hard_delete', ['comic' => $comic->id]) }}"
@@ -64,7 +64,7 @@
                                             @csrf
                                             @method('delete')
                                             <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
+                                                data-bs-dismiss="modal">Annulla</button>
                                             <button class="btn btn-danger">Elimina</button>
                                         </form>
                                     </div>
